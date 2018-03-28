@@ -1,24 +1,30 @@
-const express = require("express");
-const express_handlebars = require('express-handlebars');
+const express = require('express');
+const exphbs  = require('express-handlebars');
 
 const app = express();
 
-app.engine('handlebars', express_handlebars({defaultLayout: 'main'}));
+// Handlebars Middleware
+app.engine('handlebars', exphbs({
+  defaultLayout: 'main'
+}));
 app.set('view engine', 'handlebars');
 
-const port = process.env.PORT;
 
-app.get('/', (request, response) => {
-    const title = "Welcome";
-    response.render("index", {
-        title: title
-    });
+// Index Route
+app.get('/', (req, res) => {
+  const title = 'Welcome';
+  res.render('index', {
+    title: title
+  });
 });
 
-app.get('/about', (request, response) => {
-    response.render("about");
+// About Route
+app.get('/about', (req, res) => {
+  res.render('about');
 });
 
-app.listen(port, () => {
-    console.log(`Server started on ${port}`);
+const port = 5000;
+
+app.listen(port, () =>{
+  console.log(`Server started on port ${port}`);
 });
