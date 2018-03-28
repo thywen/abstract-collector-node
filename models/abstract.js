@@ -13,10 +13,6 @@ const AbstractScheme = new Schema({
     date: {
         type: Date,
         default: Date.now()
-    },
-    proposedToConference: {
-        type: Boolean,
-        default: false
     }
 });
 

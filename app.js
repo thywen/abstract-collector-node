@@ -2,7 +2,10 @@ const express = require('express');
 const exphbs  = require('express-handlebars');
 const mongoose = require('mongoose');
 
+//const Abstract = mongoose.mode('abstracts')
+
 const app = express();
+
 const databaseUsername = process.env.DB_USERNAME || "nody";
 const databasePassword = process.env.DB_PASSWORD || "unicorntest";
 const expressPort = process.env.PORT || 5000;
@@ -26,11 +29,17 @@ app.get('/', (req, res) => {
   });
 });
 
-
 app.get('/about', (req, res) => {
   res.render('about');
 });
 
+app.get('/abstracts', (req, res) => {
+  res.render('abstracts/abstracts')
+});
+
+app.get('/abstracts/add', (req, res) => {
+    res.render('abstracts/add')
+});
 
 app.listen(expressPort, () =>{
   console.log(`Server started on port ${expressPort}`);
