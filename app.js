@@ -13,14 +13,12 @@ mongoose.connect(`mongodb://${databaseUsername}:${databasePassword}@ds225308.mla
     (error) => console.log(error)
 );
 
-// Handlebars Middleware
 app.engine('handlebars', exphbs({
   defaultLayout: 'main'
 }));
 app.set('view engine', 'handlebars');
 
 
-// Index Route
 app.get('/', (req, res) => {
   const title = 'Welcome';
   res.render('index', {
@@ -28,7 +26,7 @@ app.get('/', (req, res) => {
   });
 });
 
-// About Route
+
 app.get('/about', (req, res) => {
   res.render('about');
 });
