@@ -1,6 +1,7 @@
 const express = require('express');
 const exphbs  = require('express-handlebars');
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
 
 //const Abstract = mongoose.mode('abstracts')
 
@@ -21,6 +22,8 @@ app.engine('handlebars', exphbs({
 }));
 app.set('view engine', 'handlebars');
 
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json());
 
 app.get('/', (req, res) => {
   const title = 'Welcome';
@@ -39,6 +42,10 @@ app.get('/abstracts', (req, res) => {
 
 app.get('/abstracts/add', (req, res) => {
     res.render('abstracts/add')
+});
+
+app.post('/abstracts', (req, res) => {
+  
 });
 
 app.listen(expressPort, () =>{
