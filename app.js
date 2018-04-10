@@ -1,7 +1,7 @@
 const express = require('express');
 const http = require('http')
 const path = require('path');
-const exphbs  = require('express-handlebars');
+const exphbs = require('express-handlebars');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 
@@ -15,9 +15,9 @@ const expressPort = process.env.PORT || 5000;
 const viewsDir = 'app/views'
 
 mongoose.connect(`mongodb://${databaseUsername}:${databasePassword}@ds225308.mlab.com:25308/vidjod`).then(
-    () => console.log('Connected to mongodb')
+  () => console.log('Connected to mongodb')
 ).catch(
-    (error) => console.log(error)
+  (error) => console.log(error)
 );
 
 app.engine('handlebars', exphbs({
@@ -28,7 +28,7 @@ app.engine('handlebars', exphbs({
 app.set('view engine', 'handlebars');
 app.set('views', __dirname + '/app/views');
 
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.get('/', (req, res) => {
@@ -47,13 +47,28 @@ app.get('/abstracts', (req, res) => {
 });
 
 app.get('/abstracts/add', (req, res) => {
-    res.render('abstracts/add')
+  res.render('abstracts/add')
 });
 
 app.post('/abstracts', (req, res) => {
-  
+  let errors = []
+  if (!req.body.title) {
+    errors.push({ text: "Please add a title" })
+  }
+  if (!req.body.details) {
+    errors.push({ text: "Please add a details" })
+  }
+  if (errors.length > 0) {
+    res.render('abstracts/add', {
+      errors: errors,
+      title: req.body.title,
+      details: req.body.details
+    })
+  } else {
+    res.send("Ok")
+  }
 });
 
-app.listen(expressPort, () =>{
+app.listen(expressPort, () => {
   console.log(`Server started on port ${expressPort}`);
 });
