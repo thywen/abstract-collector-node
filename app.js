@@ -5,7 +5,8 @@ const exphbs = require('express-handlebars');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 
-//const Abstract = mongoose.mode('abstracts')
+require('./app/models/abstract');
+const Abstract = mongoose.model('abstracts')
 
 const app = express();
 
@@ -43,7 +44,12 @@ app.get('/about', (req, res) => {
 });
 
 app.get('/abstracts', (req, res) => {
-  res.render('abstracts/abstracts')
+  Abstract.find({})
+    .sort({date: 'desc'}).then(abstracts => {
+      res.render('abstracts/abstracts', {
+        abstracts: abstracts
+      })
+    })
 });
 
 app.get('/abstracts/add', (req, res) => {
@@ -65,7 +71,15 @@ app.post('/abstracts', (req, res) => {
       details: req.body.details
     })
   } else {
-    res.send("Ok")
+    let newUser = {
+      title: req.body.title,
+      details: req.body.details
+    }
+    new Abstract(newUser)
+      .save()
+      .then(abstract => {
+        res.redirect('/abstracts')
+      })
   }
 });
 
