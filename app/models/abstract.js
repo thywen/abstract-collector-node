@@ -16,4 +16,4 @@ const AbstractsSchema = new Schema({
     }
   });
   
-  mongoose.model('abstracts', AbstractsSchema);
+  mongoose.model('abstract', AbstractsSchema);

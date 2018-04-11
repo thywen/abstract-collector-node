@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const express = require('express');
 require('../models/abstract');
-const Abstract = mongoose.model('abstracts');
+const Abstract = mongoose.model('abstract');
 const router = express.Router();
 
 const showAbstracts = (req, res) => {
@@ -33,11 +33,11 @@ const addAbstract = (req, res) => {
       details: req.body.details
     })
   } else {
-    let newUser = {
+    let newAbstract = {
       title: req.body.title,
       details: req.body.details
     }
-    new Abstract(newUser)
+    new Abstract(newAbstract)
       .save()
       .then(abstract => {
         res.redirect('/abstracts')
