@@ -1,3 +1,6 @@
+var express = require   ('express');
+var router = express.Router();
+
 class HomeController {
     static showHome(req, res) {
         res.render('index')
@@ -8,7 +11,7 @@ class HomeController {
     }
 }
 
-module.exports.controller = function(app) {
-    app.get('/', HomeController.showHome)
-    app.get('/about', HomeController.showAbout)
-}
+router.get('/', HomeController.showHome);
+router.get('/about', HomeController.showAbout)
+
+module.exports = router;

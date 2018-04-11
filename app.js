@@ -5,7 +5,6 @@ const exphbs = require('express-handlebars');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 
-
 const app = express();
 
 const databaseUsername = process.env.DB_USERNAME || "nody";
@@ -15,8 +14,9 @@ const viewsDir = 'app/views'
 
 const abstractsController = require('./app/controllers/abstractsController'),
   homeController = require('./app/controllers/homeController')
-abstractsController.controller(app)
-homeController.controller(app)
+
+app.use('/', homeController)
+app.use('/abstracts', abstractsController)
 
 mongoose.connect(`mongodb://${databaseUsername}:${databasePassword}@ds225308.mlab.com:25308/vidjod`).then(
   () => console.log('Connected to mongodb')
