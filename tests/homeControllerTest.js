@@ -1,23 +1,28 @@
 
 var homeController = require('../app/controllers/homeController')
 
-var sinon = require('sinon');
-var chai = require('chai');
-var expect = chai.expect;
+const chai = require('chai');
+const expect = chai.expect;
+const chaiHttp = require('chai-http');
+const server = require('../app')
 
-describe("Routes", function() {
-  describe("GET Users", function() {
+chai.use(chaiHttp);
 
-      it("should respond", function() {
-        var req,res,spy;
+const agent = chai.request.agent(server);
+const request = chai.request(server);
 
-        req = res = {};
-        spy = res.send = sinon.spy();
+describe("Routes", function () {
+  describe("GET Users", function () {
 
-        let a = homeController.
-        
-        //expect(spy.calledOnce).to.equal(true);
-      });     
-
-  });
-});
+    it("should respond", function (done) {
+      request.get('/').then((res) => {
+        expect(res.text).to.have.string('Jot down ideas for your next abstracts')
+        done();
+      })
+      .catch(function (err) {
+        throw err;
+        done();
+      });
+    })
+  })
+})
