@@ -3,7 +3,8 @@ const http = require('http')
 const path = require('path');
 const exphbs = require('express-handlebars');
 const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
+const middlewares = require('./app/middlewares')
+const configureViews = require('./app/views');
 
 const app = express();
 
@@ -24,16 +25,16 @@ mongoose.connect(`mongodb://${databaseUsername}:${databasePassword}@ds225308.mla
   (error) => console.log(error)
 );
 
-app.engine('handlebars', exphbs({
-  defaultLayout: 'main',
-  layoutsDir: `${__dirname}/${viewsDir}/layouts`,
-  partialsDir: `${viewsDir}/partials`
-}));
-app.set('view engine', 'handlebars');
-app.set('views', __dirname + '/app/views');
+// app.engine('handlebars', exphbs({
+//   defaultLayout: 'main',
+//   layoutsDir: `${__dirname}/${viewsDir}/layouts`,
+//   partialsDir: `${viewsDir}/partials`
+// }));
+// app.set('view engine', 'handlebars');
+// app.set('views', __dirname + '/app/views');
 
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+app.use(middlewares)
+configureViews(app)
 
 app.listen(expressPort, () => {
   console.log(`Server started on port ${expressPort}`);
