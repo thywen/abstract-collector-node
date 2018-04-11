@@ -4,51 +4,49 @@ require('../models/abstract');
 const Abstract = mongoose.model('abstracts');
 const router = express.Router();
 
-class AbstractsController {
-  static showAbstracts(req, res) {
-    Abstract.find({})
-      .sort({ date: 'desc' }).then(abstracts => {
-        res.render('abstracts/abstracts', {
-          abstracts: abstracts
-        })
+const showAbstracts = (req, res) => {
+  Abstract.find({})
+    .sort({ date: 'desc' }).then(abstracts => {
+      res.render('abstracts/abstracts', {
+        abstracts: abstracts
       })
+    })
+}
+
+const showAddAbstracts = (req, res) => {
+  res.render('abstracts/add')
+}
+
+
+const addAbstract = (req, res) => {
+  let errors = []
+  if (!req.body.title) {
+    errors.push({ text: "Please add a title" })
   }
-
-  static showAddAbstracts(req, res) {
-    res.render('abstracts/add')
+  if (!req.body.details) {
+    errors.push({ text: "Please add a details" })
   }
-
-
-  static addAbstract(req, res) {
-    let errors = []
-    if (!req.body.title) {
-      errors.push({ text: "Please add a title" })
+  if (errors.length > 0) {
+    res.render('abstracts/add', {
+      errors: errors,
+      title: req.body.title,
+      details: req.body.details
+    })
+  } else {
+    let newUser = {
+      title: req.body.title,
+      details: req.body.details
     }
-    if (!req.body.details) {
-      errors.push({ text: "Please add a details" })
-    }
-    if (errors.length > 0) {
-      res.render('abstracts/add', {
-        errors: errors,
-        title: req.body.title,
-        details: req.body.details
+    new Abstract(newUser)
+      .save()
+      .then(abstract => {
+        res.redirect('/abstracts')
       })
-    } else {
-      let newUser = {
-        title: req.body.title,
-        details: req.body.details
-      }
-      new Abstract(newUser)
-        .save()
-        .then(abstract => {
-          res.redirect('/abstracts')
-        })
-    }
   }
 }
 
-router.get('/', AbstractsController.showAbstracts)
-router.get('/add', AbstractsController.showAddAbstracts)
-router.post('/', AbstractsController.addAbstract)
+router.get('/', showAbstracts)
+router.get('/add', showAddAbstracts)
+router.post('/', addAbstract)
 
 module.exports = router;
