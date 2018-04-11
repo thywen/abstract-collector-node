@@ -5,8 +5,6 @@ const exphbs = require('express-handlebars');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 
-require('./app/models/abstract');
-const Abstract = mongoose.model('abstracts')
 
 const app = express();
 
@@ -15,8 +13,10 @@ const databasePassword = process.env.DB_PASSWORD || "unicorntest";
 const expressPort = process.env.PORT || 5000;
 const viewsDir = 'app/views'
 
-const abstractsController = require('./app/controllers/abstractsController')
+const abstractsController = require('./app/controllers/abstractsController'),
+  homeController = require('./app/controllers/homeController')
 abstractsController.controller(app)
+homeController.controller(app)
 
 mongoose.connect(`mongodb://${databaseUsername}:${databasePassword}@ds225308.mlab.com:25308/vidjod`).then(
   () => console.log('Connected to mongodb')
@@ -34,17 +34,6 @@ app.set('views', __dirname + '/app/views');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-
-app.get('/', (req, res) => {
-  const title = 'Welcome';
-  res.render('index', {
-    title: title
-  });
-});
-
-app.get('/about', (req, res) => {
-  res.render('about');
-});
 
 app.listen(expressPort, () => {
   console.log(`Server started on port ${expressPort}`);
