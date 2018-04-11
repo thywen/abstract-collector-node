@@ -15,6 +15,9 @@ const databasePassword = process.env.DB_PASSWORD || "unicorntest";
 const expressPort = process.env.PORT || 5000;
 const viewsDir = 'app/views'
 
+const abstractsController = require('./app/controllers/abstractsController')
+abstractsController.controller(app)
+
 mongoose.connect(`mongodb://${databaseUsername}:${databasePassword}@ds225308.mlab.com:25308/vidjod`).then(
   () => console.log('Connected to mongodb')
 ).catch(
@@ -41,46 +44,6 @@ app.get('/', (req, res) => {
 
 app.get('/about', (req, res) => {
   res.render('about');
-});
-
-app.get('/abstracts', (req, res) => {
-  Abstract.find({})
-    .sort({date: 'desc'}).then(abstracts => {
-      res.render('abstracts/abstracts', {
-        abstracts: abstracts
-      })
-    })
-});
-
-app.get('/abstracts/add', (req, res) => {
-  res.render('abstracts/add')
-});
-
-app.post('/abstracts', (req, res) => {
-  let errors = []
-  if (!req.body.title) {
-    errors.push({ text: "Please add a title" })
-  }
-  if (!req.body.details) {
-    errors.push({ text: "Please add a details" })
-  }
-  if (errors.length > 0) {
-    res.render('abstracts/add', {
-      errors: errors,
-      title: req.body.title,
-      details: req.body.details
-    })
-  } else {
-    let newUser = {
-      title: req.body.title,
-      details: req.body.details
-    }
-    new Abstract(newUser)
-      .save()
-      .then(abstract => {
-        res.redirect('/abstracts')
-      })
-  }
 });
 
 app.listen(expressPort, () => {
