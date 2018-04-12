@@ -43,5 +43,12 @@ describe("Routes", function () {
         done();
       });
     })
+
+    it('should render a 404 page when an unknown page is opened', (done) => {
+      request.get('/blablabla').then((res) => {
+        expect(res).to.have.status(404)
+        done();
+      })
+    })
   })
 })

@@ -24,9 +24,7 @@ describe('AbstractValidator', () => {
                 done();
             });
     })
-})
 
-describe('AbstractValidator', () => {
     it("should open the main page", function (done) {
         request.post('/abstracts')
             .send({ details: 'bla' })
@@ -37,9 +35,7 @@ describe('AbstractValidator', () => {
                 done();
             });
     })
-})
 
-describe('AbstractValidator', () => {
     it("should inform that everything is missing", function (done) {
         request.post('/abstracts')
             .send({})
