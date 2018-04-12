@@ -56,19 +56,28 @@ const updateAbstract = (req, res) => {
   Abstract.findOne({
     _id: req.params.id
   })
-  .then(idea => {
-    idea.title = req.body.title
-    idea.details = req.body.details
-    idea.save()
+  .then(abstract => {
+    abstract.title = req.body.title
+    abstract.details = req.body.details
+    abstract.save()
     .then(idea => {
       res.redirect('/abstracts')
     })
   })
 }
 
+const deleteAbstract = (req, res) => {
+  Abstract.remove({
+    _id: req.params.id
+  }).then(idea => {
+    res.redirect('/abstracts')
+  })
+}
+
 router.get('/', showAbstracts)
 router.post('/', addAbstract)
 router.put('/:id', updateAbstract)
+router.delete('/:id', deleteAbstract)
 router.get('/add', showAddAbstracts)
 router.get('/edit/:id', editAbstracts)
 
