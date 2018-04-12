@@ -41,8 +41,21 @@ const addAbstract = (req, res) => {
   }
 }
 
+const editAbstracts = (req, res) => {
+  Abstract.findOne({
+    _id: req.params.id
+  })
+  .then(abstract => {
+    res.render('abstracts/edit', {
+      abstract: abstract
+    })
+  })
+  
+}
+
 router.get('/', showAbstracts)
 router.get('/add', showAddAbstracts)
+router.get('/edit/:id', editAbstracts)
 router.post('/', addAbstract)
 
 module.exports = router;
