@@ -1,5 +1,6 @@
 const router = require('express').Router();
 
-router.use(require('./body-parser.js'));
+router.use(require('./bodyParser'));
+router.use(require('./methodOverride'))
 
 module.exports = router;

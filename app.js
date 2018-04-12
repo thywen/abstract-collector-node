@@ -1,9 +1,4 @@
 const express = require('express');
-const http = require('http')
-const path = require('path');
-const exphbs = require('express-handlebars');
-const mongoose = require('mongoose');
-
 const middlewares = require('./app/middlewares')
 const configureViews = require('./app/views');
 const routes = require('./app/routes')

@@ -50,12 +50,26 @@ const editAbstracts = (req, res) => {
       abstract: abstract
     })
   })
-  
+}
+
+const updateAbstract = (req, res) => {
+  Abstract.findOne({
+    _id: req.params.id
+  })
+  .then(idea => {
+    idea.title = req.body.title
+    idea.details = req.body.details
+    idea.save()
+    .then(idea => {
+      res.redirect('/abstracts')
+    })
+  })
 }
 
 router.get('/', showAbstracts)
+router.post('/', addAbstract)
+router.put('/:id', updateAbstract)
 router.get('/add', showAddAbstracts)
 router.get('/edit/:id', editAbstracts)
-router.post('/', addAbstract)
 
 module.exports = router;
