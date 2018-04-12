@@ -3,6 +3,8 @@ const express = require('express');
 require('../models/abstract');
 const Abstract = mongoose.model('abstract');
 const router = express.Router();
+const abstractValidator = require('../../app/controllers/validators/abstractValidator')
+
 
 const showAbstracts = (req, res) => {
   Abstract.find({})
@@ -19,13 +21,7 @@ const showAddAbstracts = (req, res) => {
 
 
 const addAbstract = (req, res) => {
-  let errors = []
-  if (!req.body.title) {
-    errors.push({ text: "Please add a title" })
-  }
-  if (!req.body.details) {
-    errors.push({ text: "Please add a details" })
-  }
+  let errors = abstractValidator.validateAbstractData(req.body)
   if (errors.length > 0) {
     res.render('abstracts/add', {
       errors: errors,
