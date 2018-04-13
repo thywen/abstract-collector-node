@@ -36,6 +36,7 @@ const addAbstract = (req, res) => {
     new Abstract(newAbstract)
       .save()
       .then(abstract => {
+        req.flash('success_msg', 'Abstract Added')
         res.redirect('/abstracts')
       })
   }
@@ -61,6 +62,7 @@ const updateAbstract = (req, res) => {
     abstract.details = req.body.details
     abstract.save()
     .then(idea => {
+      req.flash('success_msg', 'Abstract Updated')
       res.redirect('/abstracts')
     })
   })
@@ -70,6 +72,7 @@ const deleteAbstract = (req, res) => {
   Abstract.remove({
     _id: req.params.id
   }).then(idea => {
+    req.flash('success_msg', 'Abstract Removed')
     res.redirect('/abstracts')
   })
 }
