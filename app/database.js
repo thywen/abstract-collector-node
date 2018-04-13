@@ -7,7 +7,7 @@ const database = process.env.MONGODB_URI || localDB
 const test = "tst"
 
 const db = mongoose.connect(database).then(
-    () => console.log('Connected to mongodb on ' + database)
+    () => console.log('Connected to mongodb')
 ).catch(
     (error) => console.log(error)
 );
