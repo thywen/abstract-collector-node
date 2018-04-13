@@ -60,7 +60,7 @@ const updateAbstract = (req, res) => {
       abstract.title = req.body.title
       abstract.details = req.body.details
       abstract.save()
-        .then((abstract) => {
+        .then(() => {
           req.flash('success_msg', 'Abstract updated')
           res.redirect('/abstracts')
         })
