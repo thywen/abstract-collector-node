@@ -1,6 +1,3 @@
-
-var homeController = require('../../app/controllers/homeController')
-
 const chai = require('chai');
 const expect = chai.expect;
 const chaiHttp = require('chai-http');
@@ -25,7 +22,6 @@ describe("Static Routes", function () {
     })
       .catch(function (err) {
         throw err;
-        done();
       });
   })
 
@@ -37,7 +33,6 @@ describe("Static Routes", function () {
     })
       .catch(function (err) {
         throw err;
-        done();
       });
   })
 

@@ -5,10 +5,10 @@ const loginUser = (req, res) => {
 }
 
 const registerUser = (req, res) => {
-    res.send("register")
+    res.send("registration")
 }
 
-router.get('/register', registerUser)
+router.get('/registration', registerUser)
 router.get('/login', loginUser)
 
 module.exports = router

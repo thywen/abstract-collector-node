@@ -13,7 +13,7 @@ beforeEach(() => {
 })
 
 
-describe('AbstractValidator', () => {
+describe('AbstractController', () => {
     it("should inform that details are missing", function (done) {
         request.post('/abstracts')
             .send({ title: 'bla' })
