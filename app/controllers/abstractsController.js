@@ -1,8 +1,7 @@
 const mongoose = require('mongoose');
-const express = require('express');
 require('../models/abstract');
 const Abstract = mongoose.model('abstract');
-const router = express.Router();
+const router = require('express').Router();
 const abstractValidator = require('../../app/controllers/validators/abstractValidator')
 
 
@@ -36,7 +35,7 @@ const addAbstract = (req, res) => {
     new Abstract(newAbstract)
       .save()
       .then(abstract => {
-        req.flash('success_msg', 'Abstract Added')
+        req.flash('success_msg', 'Abstract added')
         res.redirect('/abstracts')
       })
   }
@@ -46,33 +45,33 @@ const editAbstracts = (req, res) => {
   Abstract.findOne({
     _id: req.params.id
   })
-  .then(abstract => {
-    res.render('abstracts/edit', {
-      abstract: abstract
+    .then(abstract => {
+      res.render('abstracts/edit', {
+        abstract: abstract
+      })
     })
-  })
 }
 
 const updateAbstract = (req, res) => {
   Abstract.findOne({
     _id: req.params.id
   })
-  .then(abstract => {
-    abstract.title = req.body.title
-    abstract.details = req.body.details
-    abstract.save()
-    .then(idea => {
-      req.flash('success_msg', 'Abstract Updated')
-      res.redirect('/abstracts')
+    .then(abstract => {
+      abstract.title = req.body.title
+      abstract.details = req.body.details
+      abstract.save()
+        .then((abstract) => {
+          req.flash('success_msg', 'Abstract updated')
+          res.redirect('/abstracts')
+        })
     })
-  })
 }
 
 const deleteAbstract = (req, res) => {
   Abstract.remove({
     _id: req.params.id
-  }).then(idea => {
-    req.flash('success_msg', 'Abstract Removed')
+  }).then(() => {
+    req.flash('success_msg', 'Abstract removed')
     res.redirect('/abstracts')
   })
 }
