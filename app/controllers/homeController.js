@@ -1,5 +1,4 @@
-var express = require   ('express');
-var router = express.Router();
+const router = require('express').Router();
 
 class HomeController {
     static showHome(req, res) {
