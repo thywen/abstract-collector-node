@@ -1,11 +1,11 @@
 const router = require('express').Router();
 
 const loginUser = (req, res) => {
-    res.send("login")
+    res.render("users/login")
 }
 
 const registerUser = (req, res) => {
-    res.send("registration")
+    res.render("users/registration")
 }
 
 router.get('/registration', registerUser)

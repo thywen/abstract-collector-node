@@ -3,6 +3,7 @@ const middlewares = require('./app/middlewares')
 const configureViews = require('./app/views');
 const routes = require('./app/routes')
 const db = require('./app/database')
+const path = require('path')
 
 const app = express();
 
@@ -11,6 +12,9 @@ const expressPort = process.env.PORT || 5000;
 app.use(middlewares)
 app.use(routes)
 configureViews(app)
+
+
+app.use(express.static(path.join(__dirname, 'public')))
 
 let server = app.listen(expressPort, () => {
   console.log(`Server started on port ${expressPort}`);
