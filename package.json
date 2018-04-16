@@ -6,7 +6,7 @@
   "scripts": {
     "start": "PROD=true node app.js",
     "test": "mocha tests/**/*Test*.js ",
-    "coverage": "istanbul cover _mocha tests/**/*Test*.js | coveralls"
+    "coverage": "istanbul cover _mocha tests/**/*Test*.js && cat ./coverage/lcov.info | coveralls"
   },
   "author": "Brad Traversy",
   "license": "MIT",

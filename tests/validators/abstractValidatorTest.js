@@ -9,19 +9,19 @@ describe('Abstract', () => {
         }
 
         expect(abstractValidator.validateAbstractData(abstract)).to.be.an('array').that.is.empty
-    })
+    });
 
     it('should require a title', () => {
         const abstract = {
             details: "testtest"
         }
 
-        const errorArray = abstractValidator.validateAbstractData(abstract)
+        const errorArray = abstractValidator.validateAbstractData(abstract);
         expect(errorArray)
             .to.be.an('array')
             .that.has.a.lengthOf(1)
-            .that.deep.include({ text: 'Please add a title' })
-    })
+            .that.deep.include({ text: 'Please add a title' });
+    });
 
     it('should require details', () => {
         const abstract = {
@@ -32,6 +32,6 @@ describe('Abstract', () => {
         expect(errorArray)
             .to.be.an('array')
             .that.has.a.lengthOf(1)
-            .that.deep.include({ text: 'Please add details' })
-    })
-})
+            .that.deep.include({ text: 'Please add details' });
+    });
+});
