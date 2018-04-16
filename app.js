@@ -2,7 +2,7 @@ const express = require('express');
 const middlewares = require('./app/middlewares')
 const configureViews = require('./app/views');
 const routes = require('./app/routes')
-const db = require('./app/database')
+
 const path = require('path')
 
 const app = express();
@@ -13,6 +13,9 @@ app.use(middlewares)
 app.use(routes)
 configureViews(app)
 
+if (process.env.PROD === "true") {
+  const db = require('./app/database')
+}
 
 app.use(express.static(path.join(__dirname, 'public')))
 

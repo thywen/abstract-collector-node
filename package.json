@@ -4,9 +4,9 @@
   "description": "App to create video ideas",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js",
-    "test": "nyc --reporter=html --reporter=text mocha --recursive --exit",
-    "coverage": "nyc report --reporter=text-lcov | coveralls"
+    "start": "PROD=true node app.js",
+    "test": "nyc --reporter=html  --reporter=text mocha tests/**/*Test*.js ",
+    "coverage": "istanbul cover _mocha tests/**/*Test*.js | coveralls"
   },
   "author": "Brad Traversy",
   "license": "MIT",

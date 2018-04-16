@@ -12,6 +12,10 @@ beforeEach(() => {
   request = chai.request(server);
 })
 
+afterEach(() => {
+  server.close()
+})
+
 describe("Static Routes", function () {
 
   it("should open the main page", function (done) {

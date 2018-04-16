@@ -6,12 +6,14 @@ var request
 
 chai.use(chaiHttp);
 
-
 beforeEach(() => {
     server = require('../../app')
     request = chai.request(server);
 })
 
+afterEach(() => {
+    server.close()
+  })
 
 describe('AbstractController', () => {
     it("should inform that details are missing", function (done) {

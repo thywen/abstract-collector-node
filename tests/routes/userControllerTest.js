@@ -11,6 +11,9 @@ beforeEach(() => {
     request = chai.request(server);
 })
 
+afterEach(() => {
+    server.close()
+})
 
 describe('User Controller', () => {
     it("open the login", function (done) {
