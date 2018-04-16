@@ -1,9 +1,10 @@
-const mongoose = require('mongoose');
-require('../models/abstract');
-const Abstract = mongoose.model('abstract');
 const router = require('express').Router();
 const abstractValidator = require('../validators/abstractValidator')
+var Abstract
 
+const init = (abstract) => {
+  Abstract = abstract
+}
 
 const showAbstracts = (req, res) => {
   Abstract.find({})
@@ -83,4 +84,4 @@ router.delete('/:id', deleteAbstract)
 router.get('/add', showAddAbstracts)
 router.get('/edit/:id', editAbstracts)
 
-module.exports = router;
+module.exports = { router, init };

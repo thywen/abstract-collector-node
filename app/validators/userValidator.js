@@ -1,7 +1,6 @@
 const validateUserData = (user) => {
     var errors = []
     if (user.password != user.passwordConfirmation) {
-        console.log(user)
         errors.push({text: 'The passwords don\'t match'})
     }
 

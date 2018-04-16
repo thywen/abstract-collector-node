@@ -6,7 +6,7 @@ describe('User', () => {
     describe('Password', () => {
         it('should inform that the passwords are not matching', () => {
             const user = {
-                password: "asdfasdfasdf",
+                password: "asdfasdfasdfqq",
                 passwordConfirmation: "asdfasdfsadfasfasf"
             }
             const errorArray = userValidator.validateUserData(user)
