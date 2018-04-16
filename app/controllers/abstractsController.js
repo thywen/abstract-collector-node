@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 require('../models/abstract');
 const Abstract = mongoose.model('abstract');
 const router = require('express').Router();
-const abstractValidator = require('../../app/controllers/validators/abstractValidator')
+const abstractValidator = require('../validators/abstractValidator')
 
 
 const showAbstracts = (req, res) => {

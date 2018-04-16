@@ -1,5 +1,5 @@
 const expect = require('chai').expect;
-const abstractValidator = require('../../app/controllers/validators/abstractValidator')
+const abstractValidator = require('../../app/validators/abstractValidator')
 
 describe('Abstract', () => {
     it('should be fine when title and details are added', () => {

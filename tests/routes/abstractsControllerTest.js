@@ -25,7 +25,7 @@ describe('AbstractController', () => {
             });
     })
 
-    it("should open the main page", function (done) {
+    it("should inform that the title are missing", function (done) {
         request.post('/abstracts')
             .send({ details: 'bla' })
             .end(function (err, res) {
