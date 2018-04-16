@@ -2,9 +2,10 @@ const router = require('express').Router();
 const homeRoutes = require('./controllers/homeController')
 const abstractRoutes = require('./controllers/abstractsController')
 const userRoutes = require('./controllers/userController')
-require('./models/Abstract');
 
 const mongoose = require('mongoose');
+
+require('./models/Abstract');
 
 const Abstract = mongoose.model('abstract');
 
