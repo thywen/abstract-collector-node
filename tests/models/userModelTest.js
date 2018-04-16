@@ -4,18 +4,18 @@ require('../../app/models/User');
 const User = mongoose.model('user');
 
 describe('User', () => {
-    const name = "test";
-    const email = "email@mail.com";
-    const password = "asdfasdf";
+    const name = 'test';
+    const email = 'email@mail.com';
+    const password = 'asdfasdf';
     it('should create a valid user', () => {
         const user = new User({
-            name: name,
-            email: email,
-            password: password
+            name,
+            email,
+            password
         });
-        expect(user.name).to.be.a.string(name)
-        expect(user.email).to.be.a.string(email)
-        expect(user.password).to.be.a.string(password)
+        expect(user.name).to.be.a.string(name);
+        expect(user.email).to.be.a.string(email);
+        expect(user.password).to.be.a.string(password);
     });
 
     it('should require a name', () => {
@@ -23,7 +23,7 @@ describe('User', () => {
 
         abstract.validate( (err) => {
             expect(err.errors.name).to.exist;
-        })
+        });
     });
 
     it('should require an email', () => {
@@ -31,7 +31,7 @@ describe('User', () => {
 
         abstract.validate( (err) => {
             expect(err.errors.email).to.exist;
-        })
+        });
     });
 
     it('should require a password', () => {
@@ -39,6 +39,6 @@ describe('User', () => {
 
         abstract.validate( (err) => {
             expect(err.errors.password).to.exist;
-        })
+        });
     });
 });

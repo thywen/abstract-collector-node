@@ -20,4 +20,4 @@ const UserSchema = new Schema({
       }
 });
 
-mongoose.model('user', UserSchema)
+mongoose.model('user', UserSchema);

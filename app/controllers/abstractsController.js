@@ -1,9 +1,9 @@
 const router = require('express').Router();
-const abstractValidator = require('../validators/abstractValidator')
-var Abstract
+const abstractValidator = require('../validators/abstractValidator');
+var Abstract;
 
 const init = (abstract) => {
-  Abstract = abstract
+  Abstract = abstract;
 }
 
 const showAbstracts = (req, res) => {

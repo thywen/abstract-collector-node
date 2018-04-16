@@ -13,8 +13,8 @@ app.use(middlewares);
 app.use(routes);
 configureViews(app);
 
-if (process.env.PROD === "true") {
-  const db = require('./app/database');
+if (process.env.PROD === 'true') {
+  require('./app/database');
 }
 
 app.use(express.static(path.join(__dirname, 'public')));
