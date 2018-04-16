@@ -1,6 +1,6 @@
 const expect = require('chai').expect;
 const mongoose = require('mongoose');
-require('../../app/models/user');
+require('../../app/models/User');
 const User = mongoose.model('user');
 
 describe('User', () => {
