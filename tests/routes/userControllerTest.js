@@ -16,7 +16,7 @@ afterEach(() => {
 })
 
 describe('User Controller', () => {
-    it("open the login", (done) => {
+    it('open the login', (done) => {
         request.get('/users/login').then((res) => {
             expect(res.text).to.have.string('login');
             expect(res).to.have.status(200);
@@ -24,7 +24,7 @@ describe('User Controller', () => {
         })
     })
 
-    it("open the registration", (done) => {
+    it('open the registration', (done) => {
         request.get('/users/registration').then((res) => {
             expect(res.text).to.have.string('registration');
             expect(res).to.have.status(200);

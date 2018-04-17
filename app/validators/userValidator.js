@@ -8,7 +8,7 @@ const validateUserData = (user) => {
         errors.push({text: 'The passwords needs at least 8 characters'});
     }
     return errors;
-}
+};
 
 module.exports = {
     validateUserData
