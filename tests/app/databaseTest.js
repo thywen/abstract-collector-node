@@ -14,12 +14,11 @@ describe('Database Connection', () => {
 
         it('connects to the test database', (done) => {
             expect(connection.host).to.not.be.null;
-            done()
         });
 
         afterEach((done) => {
             server.close();
-            connection.close()
+            connection.close();
             done();
         });
     });
