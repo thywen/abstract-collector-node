@@ -6,7 +6,7 @@ const expect = require('chai').expect;
 describe('Database Connection', () => {
 
     beforeEach(() => {
-        process.env.PROD = false;
+        process.env.PROD = true;
         connection = mongoose.connection;
         server = require('../../app');
     });
