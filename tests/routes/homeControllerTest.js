@@ -18,7 +18,7 @@ afterEach(() => {
 
 describe("Static Routes", function () {
 
-  it("should open the main page", function (done) {
+  it('should open the main page', function (done) {
     request.get('/').then((res) => {
       expect(res.text).to.have.string('Jot down ideas for your next abstracts');
       expect(res).to.have.status(200);
@@ -29,7 +29,7 @@ describe("Static Routes", function () {
       });
   });
 
-  it("should open the about page", (done) => {
+  it('should open the about page', (done) => {
     request.get('/about').then((res) => {
       expect(res.text).to.have.string('This is a Node/Express app for jotting down abstracts');
       expect(res).to.have.status(200);

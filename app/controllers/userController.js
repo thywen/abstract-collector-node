@@ -2,11 +2,11 @@ const router = require('express').Router();
 const userValidator = require('../validators/userValidator');
 
 const renderLoginForm = (req, res) => {
-    res.render("users/login");
+    res.render('users/login');
 }
 
 const renderRegisterForm = (req, res) => {
-    res.render("users/registration");
+    res.render('users/registration');
 }
 
 const registerUser = (req, res) => {
@@ -27,6 +27,6 @@ const registerUser = (req, res) => {
 router.get('/registration', renderRegisterForm);
 router.get('/login', renderLoginForm);
 
-router.post('/registration', registerUser)
+router.post('/registration', registerUser);
 
 module.exports = router

@@ -16,7 +16,7 @@ afterEach(() => {
   })
 
 describe('AbstractController', () => {
-    it("should inform that details are missing", (done) => {
+    it('should inform that details are missing', (done) => {
         request.post('/abstracts')
             .send({ title: 'bla' })
             .end(function (err, res) {
@@ -27,7 +27,7 @@ describe('AbstractController', () => {
             });
     });
 
-    it("should inform that the title are missing", (done) => {
+    it('should inform that the title are missing', (done) => {
         request.post('/abstracts')
             .send({ details: 'bla' })
             .end(function (err, res) {
@@ -38,7 +38,7 @@ describe('AbstractController', () => {
             });
     })
 
-    it("should inform that everything is missing", (done) => {
+    it('should inform that everything is missing', (done) => {
         request.post('/abstracts')
             .send({})
             .end(function (err, res) {
