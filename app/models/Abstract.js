@@ -15,5 +15,6 @@ const AbstractsSchema = new Schema({
       default: Date.now
     }
   });
-  
-  mongoose.model('abstract', AbstractsSchema);
+
+
+  module.exports = mongoose.model('abstract', AbstractsSchema);

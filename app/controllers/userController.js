@@ -1,14 +1,32 @@
 const router = require('express').Router();
+const userValidator = require('../validators/userValidator');
 
-const loginUser = (req, res) => {
-    res.send("login")
+const renderLoginForm = (req, res) => {
+    res.render('users/login');
+}
+
+const renderRegisterForm = (req, res) => {
+    res.render('users/registration');
 }
 
 const registerUser = (req, res) => {
-    res.send("registration")
+    const errors = userValidator.validateUserData(req.body);
+    if (errors.lengts > 0) {
+        res.render('users/register', {
+            errors,
+            name: req.body.name,
+            email: req.body.email,
+            password: req.body.password,
+            passwordConformation: req.body.passwordConformation
+        });
+    } else {
+        res.send('ok');
+    }
 }
 
-router.get('/registration', registerUser)
-router.get('/login', loginUser)
+router.get('/registration', renderRegisterForm);
+router.get('/login', renderLoginForm);
+
+router.post('/registration', registerUser);
 
 module.exports = router
