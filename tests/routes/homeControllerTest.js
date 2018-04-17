@@ -1,12 +1,11 @@
 const chai = require('chai');
 const expect = chai.expect;
 const chaiHttp = require('chai-http');
-var server;
-var request;
+var server, request;
 
 chai.use(chaiHttp);
 
-describe('Static Routes', function () {
+describe('Static Routes', () => {
 
   beforeEach(() => {
     server = require('../../app');
