@@ -6,16 +6,17 @@ var request;
 
 chai.use(chaiHttp);
 
-beforeEach(() => {
-    server = require('../../app');
-    request = chai.request(server);
-})
-
-afterEach(() => {
-    server.close();
-})
-
 describe('User Controller', () => {
+
+    beforeEach(() => {
+        server = require('../../app');
+        request = chai.request(server);
+    });
+
+    afterEach(() => {
+        server.close();
+    });
+
     it('open the login', (done) => {
         request.get('/users/login').then((res) => {
             expect(res.text).to.have.string('login');

@@ -6,16 +6,17 @@ var request;
 
 chai.use(chaiHttp);
 
-beforeEach(() => {
-    server = require('../../app');
-    request = chai.request(server);
-})
-
-afterEach(() => {
-    server.close();
-  })
-
 describe('AbstractController', () => {
+
+    beforeEach(() => {
+        server = require('../../app');
+        request = chai.request(server);
+    });
+
+    afterEach(() => {
+        server.close();
+    });
+
     it('should inform that details are missing', (done) => {
         request.post('/abstracts')
             .send({ title: 'bla' })

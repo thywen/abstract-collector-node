@@ -6,17 +6,16 @@ var request;
 
 chai.use(chaiHttp);
 
+describe('Static Routes', function () {
 
-beforeEach(() => {
-  server = require('../../app');
-  request = chai.request(server);
-})
+  beforeEach(() => {
+    server = require('../../app');
+    request = chai.request(server);
+  });
 
-afterEach(() => {
-  server.close();
-})
-
-describe("Static Routes", function () {
+  afterEach(() => {
+    server.close();
+  });
 
   it('should open the main page', (done) => {
     request.get('/').then((res) => {
