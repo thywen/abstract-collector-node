@@ -1,6 +1,8 @@
 const chai = require('chai');
 const expect = chai.expect;
 const chaiHttp = require('chai-http');
+const sinon = require('sinon');
+const dao = require('../../app/dao/abstractDao')
 var server, request;
 
 chai.use(chaiHttp);
@@ -16,10 +18,28 @@ describe('AbstractController', () => {
         server.close();
     });
 
+    describe('save', () => {
+        var bookMock = sinon.stub(dao, 'saveAbstract')
+
+        // it('saves the abstract', (done) => {
+        //     console.log('gasd')
+        //     request.post('/abstracts')
+        //         .send({
+        //             title: 'bla',
+        //             details: 'blub'
+        //         })
+        //         .end((err, res) => {
+        //             expect(res).to.have.status(200)
+        //         })
+        // })
+    })
+
+
+
     it('should inform that details are missing', (done) => {
         request.post('/abstracts')
             .send({ title: 'bla' })
-            .end(function (err, res) {
+            .end((err, res) => {
                 expect(res).to.have.status(200);
                 expect(res.text).to.match(/Please add details/);
                 if (err) return done(err);

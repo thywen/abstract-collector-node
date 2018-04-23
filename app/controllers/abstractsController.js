@@ -1,14 +1,9 @@
 const router = require('express').Router();
 const abstractValidator = require('../validators/abstractValidator');
-var Abstract;
-
-const init = (abstract) => {
-  Abstract = abstract;
-}
+const abstractDao = require('../dao/abstractDao')
 
 const showAbstracts = (req, res) => {
-  Abstract.find({})
-    .sort({ date: 'desc' }).then(abstracts => {
+  abstractDao.getAbstracts().then(abstracts => {
       res.render('abstracts/abstracts', {
         abstracts: abstracts
       })
@@ -18,7 +13,6 @@ const showAbstracts = (req, res) => {
 const showAddAbstracts = (req, res) => {
   res.render('abstracts/add')
 }
-
 
 const addAbstract = (req, res) => {
   let errors = abstractValidator.validateAbstractData(req.body)
@@ -33,9 +27,7 @@ const addAbstract = (req, res) => {
       title: req.body.title,
       details: req.body.details
     }
-    new Abstract(newAbstract)
-      .save()
-      .then(abstract => {
+    abstractDao.saveAbstract(newAbstract).then(() => {
         req.flash('success_msg', 'Abstract added')
         res.redirect('/abstracts')
       })
@@ -43,38 +35,33 @@ const addAbstract = (req, res) => {
 }
 
 const editAbstracts = (req, res) => {
-  Abstract.findOne({
-    _id: req.params.id
-  })
-    .then(abstract => {
       res.render('abstracts/edit', {
         abstract: abstract
       })
-    })
 }
 
 const updateAbstract = (req, res) => {
-  Abstract.findOne({
-    _id: req.params.id
-  })
-    .then(abstract => {
-      abstract.title = req.body.title
-      abstract.details = req.body.details
-      abstract.save()
-        .then(() => {
-          req.flash('success_msg', 'Abstract updated')
-          res.redirect('/abstracts')
-        })
-    })
+  // Abstract.findOne({
+  //   _id: req.params.id
+  // })
+  //   .then(abstract => {
+  //     abstract.title = req.body.title
+  //     abstract.details = req.body.details
+  //     abstract.save()
+  //       .then(() => {
+  //         req.flash('success_msg', 'Abstract updated')
+  //         res.redirect('/abstracts')
+  //       })
+  //   })
 }
 
 const deleteAbstract = (req, res) => {
-  Abstract.remove({
-    _id: req.params.id
-  }).then(() => {
-    req.flash('success_msg', 'Abstract removed')
-    res.redirect('/abstracts')
-  })
+  // Abstract.remove({
+  //   _id: req.params.id
+  // }).then(() => {
+  //   req.flash('success_msg', 'Abstract removed')
+  //   res.redirect('/abstracts')
+  // })
 }
 
 router.get('/', showAbstracts)
@@ -84,4 +71,4 @@ router.delete('/:id', deleteAbstract)
 router.get('/add', showAddAbstracts)
 router.get('/edit/:id', editAbstracts)
 
-module.exports = { router, init };
+module.exports = router;

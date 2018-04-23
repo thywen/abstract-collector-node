@@ -26,12 +26,15 @@
     "chai": "^4.1.2",
     "chai-http": "^4.0.0",
     "coveralls": "^3.0.0",
+    "factory-girl": "^5.0.2",
     "istanbul": "^0.4.5",
     "mocha": "^5.0.5",
     "mocha-lcov-reporter": "^1.3.0",
-    "nyc": "^11.6.0"
-  },
-  "nyc": {
-    "exclude": "**/*.Spec*.js"
+    "mockgoose": "^7.3.5",
+    "proxyquire": "^2.0.1",
+    "rewiremock": "^3.7.1",
+    "sinon": "^4.5.0",
+    "sinon-mongoose": "^2.1.1",
+    "testdouble": "^3.7.0"
   }
 }
