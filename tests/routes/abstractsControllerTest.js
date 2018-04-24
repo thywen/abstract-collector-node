@@ -1,14 +1,7 @@
 const chai = require('chai');
 const expect = chai.expect;
 const chaiHttp = require('chai-http');
-const sinon = require('sinon');
-const dao = require('../../app/dao/abstractDao')
-const controller = require('../../app/controllers/abstractsController')
-const proxyquire = require('proxyquire')
-const mock = require('mock-require')
 var server, request;
-var mongoose = require('mongoose')
-var Mockgoose = require('mockgoose').Mockgoose
 chai.use(chaiHttp);
 
 describe('AbstractController', () => {
@@ -16,11 +9,10 @@ describe('AbstractController', () => {
         server = require('../../app');
         request = chai.request(server);
     });
-
-    afterEach(() => {
-        server.close();
-    });
-
+    afterEach((done) => {
+        server.close()
+        done()
+    })
 
     describe('save', () => {
         it('saves the abstract', (done) => {            
@@ -31,7 +23,7 @@ describe('AbstractController', () => {
                 })
                 .end((err, res) => {
                     expect(res).to.have.status(200)
-                    done()
+                    done();
                 })
         })
     })

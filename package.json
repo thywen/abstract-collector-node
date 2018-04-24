@@ -5,8 +5,8 @@
   "main": "app.js",
   "scripts": {
     "start": "PROD=true node app.js",
-    "test": "TEST=true mocha tests/**/*Test*.js --exit",
-    "coverage": "TEST=true istanbul cover _mocha tests/**/*Test*.js --exit && cat ./coverage/lcov.info"
+    "test": "TEST=true mocha --exit tests/**/*Test*.js",
+    "coverage": "TEST=true istanbul cover _mocha -- --exit tests/**/*Test*.js && cat ./coverage/lcov.info"
   },
   "author": "Brad Traversy",
   "license": "MIT",

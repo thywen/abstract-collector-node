@@ -26,4 +26,9 @@ let server = app.listen(expressPort, () => {
   console.log(`Server started on port ${expressPort}`);
 });
 
+const stop = () => {
+  server.close()
+}
+
 module.exports = server;
+module.exports.stop = stop;
