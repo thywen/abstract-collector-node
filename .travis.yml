@@ -4,6 +4,11 @@ node_js:
 after_success:
 - npm run coverage
 - bash <(curl -s https://copilot.blackducksoftware.com/ci/travis/scripts/upload)
+services:
+  - docker
+
+before_script:
+  - docker run -d -p 27017:27017 mongo
 env:
   global:
     secure: Dr4AKq75mV598rqKbPQFs5+V8+olppSF0Sb9QW3/N2Wq/p6yi+obrfJg6NoWhbOzuTmr9K1ODrA/LA1Nf9y4UjBjBlt9K3QCJ9h0ByPF0gAWbdaJTZv1i3m1s3wkPEIO8D8r77mhEx54x2Lo1ozAv38xfiKJWr6/5hPJ0oRzTWlNcNwN8YHoKMA6pdK+IKTtech/KrJPnripjtBasz0+AcYdrLiKZSAIEqE88dc0ub+8FHX5s5ZNw4RGY0z2MbfKvIMwGGKnI/h+BSUouaHGBYjzkcJvA/Nckt8dKPUbZUlYjgzqwKDYFnM2awosapURlwUOEpIXcU3/3P5jNKxaUgY0wdKUHIAGzLKKaXS5f6l8ixYPgD2hPmIJoEWJ/at29+nBnxPZVc/q12wXCGgk5YdMKEcrw9S7LT8eIRABguQxmquGryAvvOENWknthCWZBQgYUoGAFsIixbhH51Un2v50Y+crOMK0k/32sM88PKGNmOtyd+mfX5KwxgltthUWQ9uIOhvJvfm9NR2JgceOfwVM0Gu/AuaKaMBy/oNpW9Kg4fTPEgCMScVEZIN0kcELhnaoTl+zeKhMokmJrfT3dt907TviCByvU2w54a+bEH2x81+TjN9TJznPP6hnFYTxneA9UukvluUBSfSty3D+ARH6c5CdUSdwbwEa9KEUqos=

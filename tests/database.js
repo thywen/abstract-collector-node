@@ -6,7 +6,7 @@ const localDB = `mongodb://${databaseUsername}:${databasePassword}@ds225308.mlab
 const database = process.env.MONGODB_URI || localDB
 
 
-const db = mongoose.connect(database).then(
+const db = mongoose.connect("mongodb://localhost/TestingDB").then(
     () => console.log('mongodb://localhost/TestingDB')
 ).catch(
     (error) => console.log(error)

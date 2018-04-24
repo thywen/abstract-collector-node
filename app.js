@@ -16,6 +16,9 @@ configureViews(app);
 if (process.env.PROD === 'true') {
   require('./app/database');
 }
+if (process.env.TEST === 'true') {
+  require('./tests/database')
+}
 
 app.use(express.static(path.join(__dirname, 'public')));
 
