@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const abstractValidator = require('../validators/abstractValidator');
-const abstractDao = require('../dao/abstractDao')
+const abstractDao = require('../dao/abstractDao');
 
 const showAbstracts = async (req, res) => {
   abstracts = await abstractDao.getAbstracts()

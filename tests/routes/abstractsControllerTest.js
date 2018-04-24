@@ -10,8 +10,8 @@ describe('AbstractController', () => {
         request = chai.request(server);
     });
     afterEach((done) => {
-        server.close()
-        done()
+        //server.close()
+        done();
     })
 
     describe('save', () => {
@@ -27,8 +27,6 @@ describe('AbstractController', () => {
                 })
         })
     })
-
-
 
     it('should inform that details are missing', (done) => {
         request.post('/abstracts')
