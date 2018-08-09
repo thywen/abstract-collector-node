@@ -21,7 +21,7 @@ describe('User', () => {
     it('should require a name', () => {
         const abstract = new User();
 
-        abstract.validate( (err) => {
+        abstract.validate((err) => {
             expect(err.errors.name).to.exist;
         });
     });
@@ -29,7 +29,7 @@ describe('User', () => {
     it('should require an email', () => {
         const abstract = new User();
 
-        abstract.validate( (err) => {
+        abstract.validate((err) => {
             expect(err.errors.email).to.exist;
         });
     });
@@ -37,7 +37,7 @@ describe('User', () => {
     it('should require a password', () => {
         const abstract = new User();
 
-        abstract.validate( (err) => {
+        abstract.validate((err) => {
             expect(err.errors.password).to.exist;
         });
     });

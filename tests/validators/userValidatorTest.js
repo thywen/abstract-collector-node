@@ -13,7 +13,7 @@ describe('User', () => {
             expect(errorArray)
                 .to.be.an('array')
                 .that.has.a.lengthOf(1)
-                .that.deep.include({ text: 'The passwords don\'t match' });
+                .that.deep.include({text: 'The passwords don\'t match'});
         });
 
         it('should inform that the password is too short', () => {
@@ -25,7 +25,7 @@ describe('User', () => {
             expect(errorArray)
                 .to.be.an('array')
                 .that.has.a.lengthOf(1)
-                .that.deep.include({ text: 'The passwords needs at least 8 characters' });
+                .that.deep.include({text: 'The passwords needs at least 8 characters'});
         });
     });
 });

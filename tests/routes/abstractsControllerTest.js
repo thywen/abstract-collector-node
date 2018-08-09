@@ -1,7 +1,7 @@
 const chai = require('chai');
 const expect = chai.expect;
 const chaiHttp = require('chai-http');
-var server, request;
+let server, request;
 chai.use(chaiHttp);
 
 describe('AbstractController', () => {
@@ -10,27 +10,14 @@ describe('AbstractController', () => {
         request = chai.request(server);
     });
     afterEach((done) => {
-        //server.close()
         done();
-    })
+        server.close()
+    });
 
-    describe('save', () => {
-        it('saves the abstract', (done) => {            
-            request.post('/abstracts')
-                .send({
-                    title: 'bla',
-                    details: 'blub'
-                })
-                .end((err, res) => {
-                    expect(res).to.have.status(200)
-                    done();
-                })
-        })
-    })
 
     it('should inform that details are missing', (done) => {
         request.post('/abstracts')
-            .send({ title: 'bla' })
+            .send({title: 'bla'})
             .end((err, res) => {
                 expect(res).to.have.status(200);
                 expect(res.text).to.match(/Please add details/);
@@ -41,7 +28,7 @@ describe('AbstractController', () => {
 
     it('should inform that the title are missing', (done) => {
         request.post('/abstracts')
-            .send({ details: 'bla' })
+            .send({details: 'bla'})
             .end(function (err, res) {
                 expect(res).to.have.status(200);
                 expect(res.text).to.match(/Please add a title/);
